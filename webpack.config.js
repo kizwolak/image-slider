@@ -19,7 +19,6 @@ module.exports = {
   output: {
     filename: '[name].bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    clean: true,
   },
   module: {
     rules: [
@@ -27,17 +26,11 @@ module.exports = {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
-      {
-        test: /\.(png|jpg|gif|svg|eot|ttf|woff)$/,
-        type: 'asset/resource'
-     },
      {
-      test: /\.(png|jpe?g|gif)$/i,
-      loader: 'file-loader',
-      options: {
-        name: '[path][name].[ext]',
-        outputPath: './dist',
-      }
+       test: /\.(png|svg|jpg|jpeg|gif)$/i,
+       type: 'asset/resource',
      },
-  },
+
+    ]
+  }
 };
