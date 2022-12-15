@@ -1,25 +1,45 @@
 import './style.css';
-import img3 from './1667850183379463.png';
-import img2 from './1662935313634261298.jpg';
-import img1 from './jerzyurban-biskup655.png';
+import img6 from './1667850183379463.png';
+import img5 from './1662935313634261298.jpg';
+import img4 from './jerzyurban-biskup655.png';
 
 const slide = document.querySelector('.slide');
 const leftButton = document.querySelector('.leftButton');
 const rightButton = document.querySelector('.rightButton');
+const img = [];
 console.log(slide);
 const img0 = new Image();
-img0.src = img1;
+img0.src = img6;
+img.push(img0);
 slide.appendChild(img0);
-const img4 = new Image();
-img4.src = img2;
-slide.appendChild(img4);
-const img5 = new Image();
-img5.src = img3;
-slide.appendChild(img5);
-const allImgs = document.querySelectorAll('img');
-img0.style.display = 'block';
+const img1 = new Image();
+img1.src = img5;
+img.push(img1);
+slide.appendChild(img1);
+const img2 = new Image();
+img2.src = img4;
+slide.appendChild(img2);
+img.push(img2);
+let i = 0;
+img[i].style.display = 'block';
+
 leftButton.addEventListener('click', () => {
-    img0.style.transition = '1s ease';
-    img0.style.transform = 'translateX(-110%)';
-    setTimeout(function() {img0.style.display = 'none'}, 300);
+    img[i].style.zIndex = '-1';
+    img[i].style.transition = '2s ease';
+    img[i].style.transform = 'translateX(-110%)';
+    img[i].style.display = 'none';
+    img[i].style.transform = 'translateX(0%)';
+    img[i].style.zIndex = '0';
+    if (i == (img.length - 1) ) {
+        i = 0;
+        img[i].style.transition = '2s ease';
+        img[i].style.display = 'block';
+        img[i].style.transform = 'translateX(0%)';
+        return;
+    } else {
+        img[i+1].style.transition = '2s ease';
+        img[i+1].style.display = 'block';
+        i += 1;
+    }
+
 });
