@@ -27,19 +27,23 @@ leftButton.addEventListener('click', () => {
     img[i].style.zIndex = '-1';
     img[i].style.transition = '2s ease';
     img[i].style.transform = 'translateX(-110%)';
-    img[i].style.display = 'none';
-    img[i].style.transform = 'translateX(0%)';
-    img[i].style.zIndex = '0';
-    if (i == (img.length - 1) ) {
-        i = 0;
-        img[i].style.transition = '2s ease';
-        img[i].style.display = 'block';
+    setTimeout(function () {
+        img[i].style.display = 'none';
         img[i].style.transform = 'translateX(0%)';
-        return;
-    } else {
-        img[i+1].style.transition = '2s ease';
-        img[i+1].style.display = 'block';
-        i += 1;
-    }
+        img[i].style.zIndex = '0';
+    }, 500);
+    setTimeout(function () {
+        if (i == (img.length - 1) ) {
+            i = 0;
+            img[i].style.transition = '2s ease';
+            img[i].style.display = 'block';
+            img[i].style.transform = 'translateX(0%)';
+            return;
+        } else {
+            img[i+1].style.transition = '2s ease';
+            img[i+1].style.display = 'block';
+            return i += 1;
+        }
+    }, 501);
 
 });
