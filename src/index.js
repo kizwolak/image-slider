@@ -32,12 +32,16 @@ leftButton.addEventListener('click', () => {
         img[i].style.display = 'none';
         img[i].style.transform = 'translateX(100%)';
         img[i].style.zIndex = '0';
-        if ((i = img.length - 1)) {
-            
-        }
-        img[i+1].style.display = 'block';
-        img[i+1].style.transition = '0s ease';
-        img[i+1].style.transform = 'translateX(100%)';    
+        if ((i == img.length - 1)) {
+            img[0].style.transform = 'translateX(100%)';
+            img[0].style.display = 'block';
+            img[0].style.transition = '0s ease';
+            img[0].style.transform = 'translateX(-100%)';
+        } else {
+            img[i+1].style.display = 'block';
+            img[i+1].style.transition = '0s ease';
+            img[i+1].style.transform = 'translateX(100%)';    
+        } 
     }, 1000);
     setTimeout(function () {
         if (i == (img.length - 1)) {
@@ -93,7 +97,8 @@ img.forEach((image) => {
     buttons.appendChild(div);
     div.textContent = j;
     j++;
-    div.addEventListener('click', () => {
+    div.addEventListener('click', (e) => {
+        j = e.target.textContent;
         img[i].style.zIndex = '-1';
         img[i].style.transition = '1s ease';
         img[i].style.transform = 'translateX(100%)';
@@ -102,6 +107,7 @@ img.forEach((image) => {
         img[i].style.zIndex = '0';
         img[j].style.display = 'block';
         img[j].style.transform = 'translateX(0%)';
+        i = j;
     });
 });
 
