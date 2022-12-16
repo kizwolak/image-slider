@@ -3,7 +3,7 @@ import img6 from './1667850183379463.png';
 import img5 from './1662935313634261298.jpg';
 import img4 from './jerzyurban-biskup655.png';
 
-const main = document.querySelector('.container');
+const buttons = document.querySelector('.buttons');
 const slide = document.querySelector('.slide');
 const leftButton = document.querySelector('.leftButton');
 const rightButton = document.querySelector('.rightButton');
@@ -24,7 +24,6 @@ img.push(img2);
 let i = 0;
 img[i].style.display = 'block';
 img[i].style.transform = 'translateX(0%)';
-
 leftButton.addEventListener('click', () => {
     img[i].style.zIndex = '-1';
     img[i].style.transition = '1s ease';
@@ -33,6 +32,9 @@ leftButton.addEventListener('click', () => {
         img[i].style.display = 'none';
         img[i].style.transform = 'translateX(100%)';
         img[i].style.zIndex = '0';
+        if ((i = img.length - 1)) {
+            
+        }
         img[i+1].style.display = 'block';
         img[i+1].style.transition = '0s ease';
         img[i+1].style.transform = 'translateX(100%)';    
@@ -51,7 +53,6 @@ leftButton.addEventListener('click', () => {
         }
     }, 6000);
 });
-
 rightButton.addEventListener('click', () => {
     img[i].style.zIndex = '-1';
     img[i].style.transition = '1s ease';
@@ -85,7 +86,23 @@ rightButton.addEventListener('click', () => {
         }
     }, 6000);
 });
-
+let j = 0;
 img.forEach((image) => {
-    main.appendChild('div');
+    const div = document.createElement('div');
+    div.classList = 'button';
+    buttons.appendChild(div);
+    div.textContent = j;
+    j++;
+    div.addEventListener('click', () => {
+        img[i].style.zIndex = '-1';
+        img[i].style.transition = '1s ease';
+        img[i].style.transform = 'translateX(100%)';
+        img[i].style.display = 'none';
+        img[i].style.transform = 'translateX(-100%)';
+        img[i].style.zIndex = '0';
+        img[j].style.display = 'block';
+        img[j].style.transform = 'translateX(0%)';
+    });
 });
+
+//TODO: find location of each image in array, push their img[i] into divs' .textContent, make images appear that way! possible reuse of previous functions as well
