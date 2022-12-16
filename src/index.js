@@ -3,6 +3,7 @@ import img6 from './1667850183379463.png';
 import img5 from './1662935313634261298.jpg';
 import img4 from './jerzyurban-biskup655.png';
 
+const main = document.querySelector('.container');
 const slide = document.querySelector('.slide');
 const leftButton = document.querySelector('.leftButton');
 const rightButton = document.querySelector('.rightButton');
@@ -28,16 +29,16 @@ leftButton.addEventListener('click', () => {
     img[i].style.zIndex = '-1';
     img[i].style.transition = '1s ease';
     img[i].style.transform = 'translateX(-100%)';
-    img[i+1].style.transition = '0s ease';
-    img[i+1].style.transform = 'translateX(100%)';
     setTimeout(function () {
         img[i].style.display = 'none';
         img[i].style.transform = 'translateX(100%)';
         img[i].style.zIndex = '0';
         img[i+1].style.display = 'block';
+        img[i+1].style.transition = '0s ease';
+        img[i+1].style.transform = 'translateX(100%)';    
     }, 1000);
     setTimeout(function () {
-        if (i == (img.length - 1) ) {
+        if (i == (img.length - 1)) {
             i = 0;
             img[i].style.display = 'block';
             img[i].style.transition = '2s ease';
@@ -49,33 +50,42 @@ leftButton.addEventListener('click', () => {
             return i += 1;
         }
     }, 6000);
-
 });
 
 rightButton.addEventListener('click', () => {
     img[i].style.zIndex = '-1';
     img[i].style.transition = '1s ease';
     img[i].style.transform = 'translateX(100%)';
-    img[i+1].style.transition = '0s ease';
-    img[i+1].style.transform = 'translateX(-100%)';
     setTimeout(function () {
         img[i].style.display = 'none';
         img[i].style.transform = 'translateX(-100%)';
         img[i].style.zIndex = '0';
-        img[i+1].style.display = 'block';
+        if (i == 0) {
+            img[img.length - 1].style.transform = 'translateX(100%)';
+            img[img.length - 1].style.display = 'block';
+            img[img.length - 1].style.transition = '0s ease';
+            img[img.length - 1].style.transform = 'translateX(-100%)';  
+        } else {
+            img[i-1].style.display = 'block';
+            img[i-1].style.transition = '0s ease';
+            img[i-1].style.transform = 'translateX(-100%)';    
+        }
     }, 1000);
     setTimeout(function () {
-        if (i == (img.length - 1) ) {
-            i = 0;
+        if (i == 0) {
+            i = (img.length-1);
             img[i].style.display = 'block';
             img[i].style.transition = '2s ease';
             img[i].style.transform = 'translateX(0%)';
             return;
         } else {
-            img[i+1].style.transition = '2s ease';
-            img[i+1].style.transform = 'translateX(0%)';
-            return i += 1;
+            img[i-1].style.transition = '2s ease';
+            img[i-1].style.transform = 'translateX(0%)';
+            return i -= 1;
         }
     }, 6000);
+});
 
+img.forEach((image) => {
+    main.appendChild('div');
 });
