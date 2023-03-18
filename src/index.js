@@ -1,7 +1,4 @@
 import './style.css';
-import img6 from './1667850183379463.png';
-import img5 from './1662935313634261298.jpg';
-import img4 from './jerzyurban-biskup655.png';
 
 const buttons = document.querySelector('.buttons');
 const slide = document.querySelector('.slide');
